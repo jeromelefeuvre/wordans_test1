@@ -8,13 +8,15 @@ class User
 
   def initialize(attrs = {})
     attrs.each_pair { |attr, value| send("#{attr}=", value) if respond_to?("#{attr}=") }
+
+    @created_at = Time.now if attrs[:created_at].blank?
   end
 end
 
-user1 = User.new(:id => 1, :name => "foo", :email => "foo@example.com", :created_at => Time.now)
-user2 = User.new(:id => 2, :name => "bar", :email => "bar@example.com", :created_at => Time.now)
-user3 = User.new(:id => 3, :name => "baz", :email => "baz@example.com", :created_at => Time.now)
-user4 = User.new(:id => 4, :name => "qux", :email => "quz@example.com", :created_at => Time.now)
+user1 = User.new(:id => 1, :name => "foo", :email => "foo@example.com")
+user2 = User.new(:id => 2, :name => "bar", :email => "bar@example.com")
+user3 = User.new(:id => 3, :name => "baz", :email => "baz@example.com")
+user4 = User.new(:id => 4, :name => "qux", :email => "quz@example.com")
 
 users = [user1, user2, user3, user4]
 
